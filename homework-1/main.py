@@ -13,18 +13,24 @@ try:
         with conn.cursor() as cur:
             with open(FILE_CUSTOMERS, newline='') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
+                # Пропускаем первую строку
+                next(reader)
                 for row in reader:
                     cur.execute('INSERT INTO customers VALUES (%s, %s)', (row[0], row[1]))
                     cur.execute('SELECT * FROM customers')
             
             with open(FILE_EMPLOYEES, newline='') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
+                # Пропускаем первую строку
+                next(reader)
                 for row in reader:
                     cur.execute('INSERT INTO employees VALUES (%s, %s, %s)', (row[0], row[1], row[2]))
                     cur.execute('SELECT * FROM employees')
 
             with open(FILE_ORDERS, newline='') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
+                # Пропускаем первую строку
+                next(reader)
                 for row in reader:
                     cur.execute('INSERT INTO orders VALUES (%s, %s, %s)', (row[0], row[1], row[2]))
                     cur.execute('SELECT * FROM orders')
