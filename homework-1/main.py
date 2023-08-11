@@ -17,15 +17,16 @@ try:
                 # Пропускаем первую строку
                 next(reader)
                 for row in reader:
-                    cur.execute('INSERT INTO customers VALUES (%s, %s)', (row[0], row[1]))
+                    cur.execute('INSERT INTO customers VALUES (%s, %s, %s)', (row[0], row[1], row[2]))
                     cur.execute('SELECT * FROM customers')
-            
+
             with open(PATH_EMPLOYEES, newline='') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 # Пропускаем первую строку
                 next(reader)
                 for row in reader:
-                    cur.execute('INSERT INTO employees VALUES (%s, %s, %s)', (row[0], row[1], row[2]))
+                    cur.execute('INSERT INTO employees VALUES (%s, %s, %s, %s, %s, %s)', (row[0], row[1], row[2],
+                                                                              row[3], row[4], row[5]))
                     cur.execute('SELECT * FROM employees')
 
             with open(PATH_ORDERS, newline='') as csvfile:
@@ -33,7 +34,8 @@ try:
                 # Пропускаем первую строку
                 next(reader)
                 for row in reader:
-                    cur.execute('INSERT INTO orders VALUES (%s, %s, %s)', (row[0], row[1], row[2]))
+                    cur.execute('INSERT INTO orders VALUES (%s, %s, %s, %s, %s)', (row[0], row[1], row[2], row[3],
+                                                                           row[4]))
                     cur.execute('SELECT * FROM orders')
 
 finally:
